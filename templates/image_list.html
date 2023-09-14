@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Image list</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+  </head>
+  <body>
+    {% block content %}
+    <div class="container">
+      <h1
+        class="mt-4"
+        style="
+          font-family: georgia, garamond, serif;
+          font-size: 50px;
+          font-style: italic;
+        "
+      >
+        Your Uploaded Images
+      </h1>
+
+      <div
+        class="row mt-4"
+        style="
+          font-family: georgia, garamond, serif;
+          font-size: 16px;
+          font-style: italic;
+        "
+      >
+        {% if user_images %} {% for user_image in user_images %}
+        <div
+          class="col-md-4 mb-4"
+          style="
+            font-family: georgia, garamond, serif;
+            font-size: 20px;
+            font-style: italic;
+          "
+        >
+          <div class="card">
+            <img
+              src="{% url 'preview_image' user_image.id %}"
+              class="card-img-top img-fluid"
+              alt="User Image"
+              style="height: 100px; width: 100px"
+            />
+            <div class="card-body">
+              <h5 class="card-title">
+                Uploaded on: {{ user_image.uploaded_at|date:"F d, Y" }}
+              </h5>
+              <button
+                class="btn btn-info btn-sm preview-button"
+                data-image-url="{% url 'preview_image' user_image.id %}"
+                data-download-url="{% url 'download_image' user_image.id %}"
+                style="
+                  font-family: georgia, garamond, serif;
+                  font-size: 16px;
+                  font-style: italic;
+                "
+              >
+                Preview
+              </button>
+              <button>
+                <a
+                  href="{% url 'delete_image' user_image.id %}"
+                  class="btn btn-danger btn-sm"
+                  style="
+                    font-family: georgia, garamond, serif;
+                    font-size: 16px;
+                    font-style: italic;
+                  "
+                  >Delete</a
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+        {% endfor %} {% else %}
+        <div
+          class="col"
+          style="
+            font-family: georgia, garamond, serif;
+            font-size: 20px;
+            font-style: italic;
+          "
+        >
+          <p>You haven't uploaded any images yet.</p>
+        </div>
+        {% endif %}
+      </div>
+
+      <div
+        class="mt-4"
+        style="
+          font-family: georgia, garamond, serif;
+          font-size: 20px;
+          font-style: italic;
+        "
+      >
+        <a href="{% url 'upload_image' %}" class="btn btn-primary"
+          >Upload New Image</a
+        >
+      </div>
+    </div>
+
+    <script>
+      // JavaScript to open image preview in a new tab
+      const previewButtons = document.querySelectorAll(".preview-button");
+      previewButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          const imageUrl = this.getAttribute("data-image-url");
+          const downloadUrl = this.getAttribute("data-download-url");
+          const previewWindow = window.open("", "_blank");
+
+          // Add the image to the preview tab
+          previewWindow.document.write(
+            `<img src="${imageUrl}" alt="Full Size Image" style="max-width: 100%;">`
+          );
+
+          // Add a download link to the preview tab
+          previewWindow.document.write(
+            `<p><a href="${downloadUrl}" download>Download Image</a></p>`
+          );
+        });
+      });
+    </script>
+    {% endblock %}
+  </body>
+</html>

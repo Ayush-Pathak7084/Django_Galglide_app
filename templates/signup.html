@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galley Glide</title>
+    <!-- Include Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- Include custom CSS for styling -->
+    <style>
+      body {
+        background-image: url("https://via.placeholder.com/1920x1080"); /* Replace with your background image URL */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .signup-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .signup-form {
+        padding: 30px;
+      }
+
+      .signup-header {
+        text-align: center;
+        padding: 20px 0;
+      }
+
+      .signup-header h2 {
+        font-weight: bold;
+      }
+
+      .create-account-link {
+        text-align: center;
+        margin-top: 15px;
+      }
+
+      .create-account-link a {
+        text-decoration: none;
+        font-weight: bold;
+        color: #fff;
+        transition: color 0.3s;
+      }
+
+      .create-account-link a:hover {
+        color: #007bff;
+      }
+
+      /* Animative Blocks */
+      .animative-block {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+        margin-bottom: 15px;
+        padding: 15px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s, transform 0.5s;
+      }
+
+      /* Animation when in view */
+      .in-view {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="signup-container">
+            <div class="signup-form">
+              <div class="signup-header">
+                <h2>Sign Up</h2>
+              </div>
+
+              <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    name="username"
+                    placeholder="Enter username"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="Enter email"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Enter password"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="confirmpassword">Confirm Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="confirmpassword"
+                    name="confirmpassword"
+                    placeholder="Confirm password"
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                  Sign Up
+                </button>
+              </form>
+              <div class="create-account-link">
+                Already have an account? <a href="{% url 'login' %}">Log in</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Include Waypoints.js for in-view detection -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+
+    <!-- Custom JavaScript for animative blocks -->
+    <script>
+      $(document).ready(function () {
+        // Add Waypoints for animative blocks
+        $(".animative-block").each(function () {
+          var $this = $(this);
+          $this.waypoint({
+            handler: function (direction) {
+              $this.addClass("in-view");
+            },
+            offset: "90%",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

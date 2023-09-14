@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Galley Glide</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <style>
+      .body {
+        font-family:  Arial, sans-serif;
+        margin: 0;
+        overflow: hidden;
+        cursor: none; /* Hide the default cursor */
+      }
+
+      .magic-word {
+        position: absolute;
+        font-size: 24px;
+        font-weight: bold;
+        opacity: 0; /* Initially hide the words */
+        pointer-events: none; /* Ignore mouse events on the words */
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/" style="
+            font-family: georgia, garamond, serif;
+            font-size: 23px;
+            font-style: italic;
+          ">GalGlide</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="
+            font-family: georgia, garamond, serif;
+            font-size: 20px;
+            font-style: italic;
+          ">
+          <div class="navbar-nav">
+            <a class="nav-link" aria-current="page" href="/">Home</a>
+            {% comment %}
+            <a class="nav-link" href="#">Features</a> {%endcomment%}
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+            <a class="nav-link" href="{% url 'signup' %}">SignUp</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header>
+      <div class="container" style="
+            font-family: georgia, garamond, serif;
+            font-size: 25px;
+            font-style: italic;
+          ">
+        <!-- Change the font style of the heading -->
+        <h1 class="fw-bold text-primary container text-center body" style="
+            font-family: georgia, garamond, serif;
+            font-size: 50px;
+            font-style: italic;
+          "> Welcome to Our Image Upload Website</h1>
+      <p class="text-center">Upload and share your images with ease!</p>
+    </header>
+    </div>
+      
+
+    <!-- Main Content Section -->
+    <div class="container mt-5" style="
+            font-family: georgia, garamond, serif;
+            font-size: 25px;
+            font-style: italic;
+          ">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h2 class="fw-bold text-primary container text-center" style="
+            font-family: georgia, garamond, serif;
+            font-size: 35px;
+            font-style: italic;
+          ">Why Choose Us?</h2>
+                <p class="text-center">Our image upload website provides a simple and secure way to upload and share your images with others. Whether you want to showcase your photography skills or simply share memories with friends and family, our platform is here to help.</p>
+            </div>
+            <div class="col-md-8 offset-md-2">
+                <h2 class="fw-bold text-primary container text-center" style="
+            font-family: georgia, garamond, serif;
+            font-size: 35px;
+            font-style: italic;
+          ">Why Choose Our Image Upload Service?</h2>
+        <p>
+          
+        </p>
+        <ul class="text-center"  >
+          <li>Easy and fast image uploading</li>
+          <li>Secure and private image storage</li>
+          <li>Share your images for future use</li>
+          <li>Explore and discover new images and save on site </li>
+        </ul>
+            </div>
+        </div>
+    </div>
+            <div class="col-md-8 offset-md-2 container text-center" style="
+            font-family: georgia, garamond, serif;
+            font-size: 25px;
+            font-style: italic;
+          ">
+                 <h2 class="fw-bold text-primary container text-center"style="
+            font-family: georgia, garamond, serif;
+            font-size: 35px;
+            font-style: italic;
+          ">How to Upload an Image</h2>
+        <ol>
+          <li>Click on the "Login" or "Signup" button in the navigation bar.</li>
+          <li>Click on the "Upload" button.</li>
+          <li>Select the image you want to upload from your device.</li>
+          <li>Click the "Upload" button to submit your image.</li>
+        </ol>
+            </div>
+    
+
+            <div class="col-md-8 offset-md-2 ">
+                 <h2 class="fw-bold text-primary container text-center" style="
+            font-family: georgia, garamond, serif;
+            font-size: 35px;
+            font-style: italic;
+          ">Get Started Now!</h2>
+        <p class="text-center"style="
+            font-family: georgia, garamond, serif;
+            font-size: 25px;
+            font-style: italic;
+          ">
+          Ready to share your images with the world? Sign up for a free account
+          today!
+        </p>
+            </div>
+
+    <!-- Footer Section -->
+    <footer style="
+            font-family: georgia, garamond, serif;
+            font-size: 25px;
+            font-style: italic;
+          ">
+      <p class="text-center">&copy; 2023 Image Upload Website</p>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const magicWord = document.getElementById("magicWord");
+      const body = document.body;
+
+      body.addEventListener("mousemove", (e) => {
+        const x = e.clientX;
+        const y = e.clientY;
+
+        // Update the position of the magic word
+        magicWord.style.left = x + "px";
+        magicWord.style.top = y + "px";
+
+        // Show the magic word
+        magicWord.style.opacity = 1;
+
+        // Reset opacity after a short delay (500ms)
+        setTimeout(() => {
+          magicWord.style.opacity = 0;
+        }, 500);
+      });
+    </script>
+  </body>
+</html>

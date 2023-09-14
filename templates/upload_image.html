@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Galley Glide</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+      <div class="container-fluid" >
+        <a class="navbar-brand" href="/" style = "font-family:georgia,garamond,serif;font-size:20px;font-style:italic;">GalGlide</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a
+                class="btn btn-primary"
+                data-bs-toggle="offcanvas"
+                href="#offcanvasExample"
+                role="button"
+                aria-controls="offcanvasExample"
+                style = "font-family:georgia,garamond,serif;font-size:16px;"
+                >Profile</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <button
+            class="btn btn-primary"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight"
+            style = "font-family:georgia,garamond,serif;font-size:16px;"
+          >
+            Logout
+          </button>
+        </li>
+      </ul>
+    </nav>
+    {% comment %} <div><img src="..." class="img-fluid" alt="..."></div> {% endcomment %}
+
+    
+    <div class="container mt-5">
+      <div class="header">
+        <h1 class="text-center" style = "font-family:georgia,garamond,serif;font-size: 50px;font-style:italic;">Welcome to Our Website Gallery Glide</h1>
+      </div>
+      <div>
+        <p class="text-left fs-5" style = "font-family:georgia,garamond,serif;font-size:16px;font-style:italic;">
+          Get start with Uploading Images to Our Site,By clicking on Upload Images  
+
+        </p>
+      </div>
+      <div class="container">
+        <div class="py-5 text-center bg-secondary text-white">
+          <h1 class="mb-5" style = "font-family:georgia,garamond,serif;font-size:50px;font-style:italic;">
+            Upload images
+          </h1>
+          <form action="" method="post" enctype= "multipart/form-data" style = "font-family:georgia,garamond,serif;font-size:16px;">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" class="btn btn-primary" value="Upload" style = "font-family:georgia,garamond,serif;font-size:16px;">
+          </form>
+        </div>
+        <div class="row">
+          {% comment %} {%for x in img%}
+          <div class="col-sm-4">
+            <div class="card m-2">
+              <img src="{{x.photo.url}}" alt="" class="card-img-top" height="200px">
+              <div class="card-footer">
+                <small class="text-muted">{{x.date}}</small>
+              </div>
+            </div>
+
+          </div>
+          {%endfor%} {% endcomment %}
+        </div>
+      </div>
+
+
+      <div class="login-signup-section btn btn-outline-light d-md-flex justify-content-md-end">
+        <button class="login-signup-button " style = "font-family:georgia,garamond,serif;font-size:16px;">
+          <a href="{% url 'logout' %}">Log Out</a>
+        </button>
+      </div>
+
+      <div class="profile-section btn btn-outline-light d-md-flex justify-content-md-end">
+        <button class="profile-button"style = "font-family:georgia,garamond,serif;font-size:16px"><a href="{% url 'image_list' %}">View Profile</a></button>
+      </div>
+    </div>
+    
+    <div
+      class="offcanvas offcanvas-start"
+      tabindex="-1"
+      id="offcanvasExample"
+      aria-labelledby="offcanvasExampleLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel" style = "font-family:georgia,garamond,serif;font-size:20px;">Profile</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body"style = "font-family:georgia,garamond,serif;font-size:16px;font-style:italic;">
+        <div>
+          For More Option Click On More Below!!
+        </div>
+        <div class="dropdown mt-3">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            style = "font-family:georgia,garamond,serif;font-size:16px;"
+          >
+            More
+          </button>
+          <ul class="dropdown-menu" style = "font-family:georgia,garamond,serif;font-size:16px;">
+            <li><a class="dropdown-item" href="{% url 'upload_image' %}">Upload Image</a></li>
+            <li><a class="dropdown-item" href="{% url 'image_list' %}">Uploaded Images</a></li>
+            <li><a class="dropdown-item" href="#">Instructions</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="offcanvas offcanvas-end"
+      tabindex="-1"
+      id="offcanvasRight"
+      aria-labelledby="offcanvasRightLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRightLabel" style = "font-family:georgia,garamond,serif;font-size:25px;">
+          Logout
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body" style = "font-family:georgia,garamond,serif;font-size:16px;font-style:italic;">
+        <div>
+          Do you Really wanna logout!!
+          <div><a class="btn btn-primary" href="{% url 'logout' %}" role="button">Logout</a></div>
+        </div>
+        
+    </div>
+     
+
+
+   
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
